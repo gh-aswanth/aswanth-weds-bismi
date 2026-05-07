@@ -70,6 +70,12 @@ onMounted(() => {
   to { transform: translate(10%, 10%); }
 }
 
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 6vw, 56px);
+  line-height: 1.2;
+}
+
 .match-content {
   position: relative;
   z-index: 5;
@@ -78,11 +84,17 @@ onMounted(() => {
 .match-card {
   max-width: 600px;
   margin: 40px auto;
-  padding: 60px 40px;
+  padding: 40px 30px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(212, 180, 131, 0.1);
   backdrop-filter: blur(10px);
   position: relative;
+}
+
+.lede {
+  font-family: 'Bellefair', serif;
+  font-size: clamp(18px, 3vw, 22px);
+  font-style: normal;
 }
 
 .m-visual {
