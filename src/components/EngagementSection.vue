@@ -96,6 +96,16 @@ onUnmounted(() => {
   min-height: 100vh;
 }
 
+#chapter4::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .eng-marquee-container {
   position: absolute;
   top: 0; left: 0;
@@ -162,29 +172,25 @@ onUnmounted(() => {
 
 .eng-name {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(50px, 15vw, 120px);
+  font-size: clamp(60px, 15vw, 120px);
   color: var(--gold-light);
-  line-height: 0.8;
+  line-height: 1.1;
+  padding: 0.1em 0;
   letter-spacing: normal;
   opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 2s cubic-bezier(0.19, 1, 0.22, 1), 
-              transform 2s cubic-bezier(0.19, 1, 0.22, 1);
-  background: linear-gradient(to right, var(--gold-light), #fff, var(--gold-light));
+  transform: translateY(30px);
+  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  background: linear-gradient(to bottom, #fff, var(--gold-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
 .eng-name.show {
   opacity: 1;
-  transform: scale(1);
-  animation: text-glow 2s ease-in-out infinite alternate;
+  transform: translateY(0);
 }
 
-@keyframes text-glow {
-  from { text-shadow: 0 0 10px rgba(212, 180, 131, 0.2); }
-  to { text-shadow: 0 0 25px rgba(212, 180, 131, 0.6); }
-}
 
 .eng-ampersand-modern {
   font-family: 'Pinyon Script', cursive;
@@ -192,9 +198,9 @@ onUnmounted(() => {
   color: var(--gold);
   z-index: 15;
   opacity: 0;
-  transform: scale(0);
-  transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  margin: -0.3em 0;
+  transform: scale(0.8);
+  transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  margin: -0.2em 0;
 }
 
 .eng-ampersand-modern.show {

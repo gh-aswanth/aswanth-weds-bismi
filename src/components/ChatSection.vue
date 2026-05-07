@@ -181,6 +181,7 @@ onUnmounted(() => {
   font-size: 14px;
   font-weight: 600;
   color: var(--gold-light);
+  white-space: nowrap;
 }
 
 .details .status {

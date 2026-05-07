@@ -1,361 +1,371 @@
 <template>
   <section id="hero">
-    <div class="hero-marquee-container">
-      <div class="marquee-line">THE WEDDING OF ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 · THE WEDDING OF ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 ·</div>
-      <div class="marquee-line rev">SAVE THE DATE · JUNE 14, 2026 · THE WEDDING OF ASWANTH &amp; DR. BISMI K · SAVE THE DATE · JUNE 14, 2026 ·</div>
-      <div class="marquee-line">ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 · THE WEDDING OF ASWANTH &amp; DR. BISMI K · ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 ·</div>
+    <!-- Refined Minimalist Background -->
+    <div class="hero-bg-refinement">
+      <div class="bg-vignette"></div>
+      <div class="bg-pattern"></div>
+      <div class="glow-point"></div>
     </div>
 
     <div class="hero-content">
+      <div class="hero-top-meta" :class="{ 'show': isMounted }">
+        <span class="save-the-date">Save The Date</span>
+        <div class="decorative-line"></div>
+        <span class="wedding-date">June 14, 2026</span>
+      </div>
+
       <div class="hero-main-title">
-        <h1 class="hero-name first" :class="{ show: showFirst }">Aswanth</h1>
-        <div class="hero-ampersand-modern" :class="{ show: showAmp }">&amp;</div>
-        <h1 class="hero-name second" :class="{ show: showSecond }">Dr. Bismi K</h1>
-      </div>
-    </div>
-
-    <div class="hero-footer-modern">
-      <div class="hero-loc-date-wrap">
-        <div class="footer-info-group">
-          <p class="h-label">Location</p>
-          <p class="h-value">SR Auditorium, Kollam</p>
+        <div class="name-box" :class="{ 'show': showFirst }">
+          <h1 class="hero-name">Aswanth</h1>
         </div>
-        <div class="footer-separator"></div>
-        <div class="footer-info-group">
-          <p class="h-label">Date</p>
-          <p class="h-value">June 14, 2026</p>
+        
+        <div class="amp-box" :class="{ 'show': showAmp }">
+          <span class="hero-amp-elegant">&amp;</span>
+        </div>
+
+        <div class="name-box" :class="{ 'show': showSecond }">
+          <h1 class="hero-name">Dr. Bismi K</h1>
         </div>
       </div>
 
-      <div class="hero-countdown-modern">
-        <div class="cd-m-item"><span class="cd-m-num">{{ countdown.d }}</span><span class="cd-m-label">Days</span></div>
-        <div class="cd-m-item"><span class="cd-m-num">{{ countdown.h }}</span><span class="cd-m-label">Hours</span></div>
-        <div class="cd-m-item"><span class="cd-m-num">{{ countdown.m }}</span><span class="cd-m-label">Min</span></div>
-        <div class="cd-m-item"><span class="cd-m-num">{{ countdown.s }}</span><span class="cd-m-label">Sec</span></div>
+      <div class="hero-location-wrap" :class="{ 'show': isMounted }">
+        <p class="location-text">SR Auditorium, Kollam</p>
+      </div>
+
+      <div class="hero-countdown-minimal" :class="{ 'show': isMounted }">
+        <div v-for="(val, unit) in countdownDisplay" :key="unit" class="minimal-cd-item">
+          <span class="minimal-cd-val">{{ val }}</span>
+          <span class="minimal-cd-unit">{{ unit }}</span>
+        </div>
+      </div>
+      
+      <div class="hero-scroll-invite" :class="{ 'show': isMounted }">
+        <span class="scroll-label">Begin the Journey</span>
+        <div class="scroll-arrow"></div>
       </div>
     </div>
-    
-    <div class="hearts-container" ref="heartsContainer"></div>
   </section>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue';
+import { ref, reactive, onMounted, onUnmounted, computed } from 'vue';
 
+const isMounted = ref(false);
 const showFirst = ref(false);
 const showAmp = ref(false);
 const showSecond = ref(false);
-const heartsContainer = ref(null);
 
 const countdown = reactive({
-  d: '00', h: '00', m: '00', s: '00'
+  d: 0, h: 0, m: 0, s: 0
 });
+
+const countdownDisplay = computed(() => ({
+  Days: String(countdown.d).padStart(2, '0'),
+  Hours: String(countdown.h).padStart(2, '0'),
+  Min: String(countdown.m).padStart(2, '0'),
+  Sec: String(countdown.s).padStart(2, '0')
+}));
 
 const tick = () => {
   const now = new Date();
-  let target = new Date(now.getFullYear(), 5, 14, 12, 0, 0);
-  if (target < now) target = new Date(now.getFullYear() + 1, 5, 14, 12, 0, 0);
+  let target = new Date(2026, 5, 14, 12, 0, 0);
   let diff = Math.max(0, target - now);
   
-  const d = Math.floor(diff / 86400000); diff -= d * 86400000;
-  const h = Math.floor(diff / 3600000); diff -= h * 3600000;
-  const m = Math.floor(diff / 60000); diff -= m * 60000;
-  const s = Math.floor(diff / 1000);
-
-  countdown.d = String(d).padStart(2, '0');
-  countdown.h = String(h).padStart(2, '0');
-  countdown.m = String(m).padStart(2, '0');
-  countdown.s = String(s).padStart(2, '0');
+  countdown.d = Math.floor(diff / 86400000);
+  diff %= 86400000;
+  countdown.h = Math.floor(diff / 3600000);
+  diff %= 3600000;
+  countdown.m = Math.floor(diff / 60000);
+  diff %= 60000;
+  countdown.s = Math.floor(diff / 1000);
 };
 
-const createHeart = () => {
-  if (!heartsContainer.value) return;
-  const h = document.createElement('div');
-  h.className = 'heart-float';
-  h.innerHTML = '♥';
-  h.style.left = (10 + Math.random() * 80) + '%';
-  h.style.bottom = '10%';
-  h.style.fontSize = (16 + Math.random() * 20) + 'px';
-  h.style.color = Math.random() > 0.5 ? 'var(--blush)' : 'var(--gold)';
-  heartsContainer.value.appendChild(h);
-  setTimeout(() => h.remove(), 4000);
-};
-
-let timer, heartTimer;
+let timer;
 
 onMounted(() => {
-  setTimeout(() => {
-    showFirst.value = true;
-    setTimeout(() => {
-      showAmp.value = true;
-      setTimeout(() => {
-        showSecond.value = true;
-      }, 400);
-    }, 600);
-  }, 500);
+  isMounted.value = true;
+  setTimeout(() => showFirst.value = true, 800);
+  setTimeout(() => showAmp.value = true, 1400);
+  setTimeout(() => showSecond.value = true, 2000);
 
   tick();
   timer = setInterval(tick, 1000);
-  heartTimer = setInterval(createHeart, 2000);
 });
 
 onUnmounted(() => {
   clearInterval(timer);
-  clearInterval(heartTimer);
 });
 </script>
 
 <style scoped>
 #hero {
-  background: #080808;
-  overflow: hidden;
+  min-height: 100vh;
   position: relative;
+  background: #080808;
+  color: #fff;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
 }
 
-.hero-marquee-container {
+.hero-bg-refinement {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  opacity: 0.15;
-  pointer-events: none;
 }
 
-.marquee-line {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 800;
-  font-size: 15vw;
-  white-space: nowrap;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--gold);
-  line-height: 0.9;
-  display: flex;
-  animation: marquee-scroll 30s linear infinite;
-  filter: drop-shadow(0 0 10px rgba(197, 163, 88, 0.2));
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(197, 163, 88, 0.05) 0%, transparent 70%);
 }
 
-.marquee-line.rev {
-  animation-direction: reverse;
+.bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
 }
 
-@keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.glow-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle at center, rgba(197, 163, 88, 0.1) 0%, transparent 60%);
+  transform: translate(-50%, -50%);
+  filter: blur(100px);
+  animation: pulseGlow 10s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
 }
 
 .hero-content {
   position: relative;
   z-index: 10;
-  width: 100%;
-  max-width: 1600px;
-  padding: 0 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.hero-main-title {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 60px; /* Reduced from 100px */
-  gap: 15px; /* Reduced from 20px */
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px;
+}
+
+/* Top Meta */
+.hero-top-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 1s ease-out;
+}
+
+.hero-top-meta.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.save-the-date, .wedding-date {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.decorative-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+/* Main Title */
+.hero-main-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.name-box {
+  padding: 10px 20px;
 }
 
 .hero-name {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(50px, 15vw, 120px);
-  color: var(--gold-light);
-  line-height: 0.8;
-  letter-spacing: normal;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 2s cubic-bezier(0.19, 1, 0.22, 1), 
-              transform 2s cubic-bezier(0.19, 1, 0.22, 1);
-  background: linear-gradient(to right, var(--gold-light), #fff, var(--gold-light));
+  font-size: clamp(70px, 15vw, 150px);
+  background: linear-gradient(180deg, #fff 0%, var(--gold-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.hero-name.show {
-  opacity: 1;
-  transform: scale(1);
-  animation: text-glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes text-glow {
-  from { text-shadow: 0 0 10px rgba(212, 180, 131, 0.2); }
-  to { text-shadow: 0 0 25px rgba(212, 180, 131, 0.6); }
-}
-
-.hero-ampersand-modern {
-  font-family: 'Pinyon Script', cursive;
-  font-size: clamp(40px, 10vw, 80px);
-  color: var(--gold);
-  z-index: 15;
+  line-height: 1.1;
+  padding: 0.1em 0;
   opacity: 0;
-  transform: scale(0);
-  transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  margin: -0.3em 0;
+  transform: translateY(50px);
+  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.hero-ampersand-modern.show {
+.name-box.show .hero-name {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.amp-box {
+  margin: -0.2em 0;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.amp-box.show {
   opacity: 1;
   transform: scale(1);
 }
 
-.hero-footer-modern {
-  position: absolute;
-  bottom: 40px; /* Reduced from 60px */
-  width: 100%;
-  max-width: 1400px;
-  padding: 0 40px; /* Reduced from 60px */
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  z-index: 20;
+.hero-amp-elegant {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(40px, 8vw, 80px);
+  color: var(--gold);
+  opacity: 0.8;
 }
 
-.hero-loc-date-wrap {
-  display: flex;
-  align-items: center;
-  gap: 30px;
+/* Location */
+.hero-location-wrap {
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease-out 2.5s;
 }
 
-.footer-info-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.hero-location-wrap.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.footer-separator {
-  width: 1px;
-  height: 30px;
-  background: var(--gold);
-  opacity: 0.3;
-  transform: scaleY(0);
-  animation: growY 1s forwards 2.6s;
-}
-
-@keyframes growY {
-  to { transform: scaleY(1); }
-}
-
-.h-label {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 11px;
+.location-text {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(14px, 2vw, 18px);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideUpFade 1s forwards 2.5s;
-}
-
-.h-value {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(16px, 2vw, 24px);
   color: #fff;
-  font-weight: 300;
-  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Countdown Minimal */
+.hero-countdown-minimal {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 80px;
   opacity: 0;
   transform: translateY(20px);
-  animation: slideUpFade 1s forwards 2.7s;
+  transition: all 1s ease-out 2.8s;
 }
 
-@keyframes slideUpFade {
-  to { opacity: 1; transform: translateY(0); }
+.hero-countdown-minimal.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.hero-countdown-modern {
-  display: flex;
-  gap: 30px; /* Reduced from 40px */
-  opacity: 0;
-  animation: fadeIn 2s forwards 3s;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.cd-m-item {
+.minimal-cd-item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.cd-m-num {
+.minimal-cd-val {
   font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 36px;
   font-weight: 200;
-  font-size: 32px; /* Reduced from 40px */
   color: #fff;
-  line-height: 1;
 }
 
-.cd-m-label {
+.minimal-cd-unit {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 9px;
-  letter-spacing: 2px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
   margin-top: 4px;
 }
 
-.hearts-container {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 10;
-}
-
-:deep(.heart-float) {
-  position: absolute;
-  color: var(--rose);
-  font-size: 20px;
-  pointer-events: none;
-  animation: floatUp 4s ease-in forwards;
-  z-index: 10;
+/* Scroll Invite */
+.hero-scroll-invite {
   opacity: 0;
+  transition: all 1s ease-out 3.5s;
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(0) rotate(0deg) scale(0); opacity: 0; }
-  20% { opacity: 0.8; transform: translateY(-20px) rotate(20deg) scale(1); }
-  100% { transform: translateY(-200px) rotate(-20deg) scale(0.5); opacity: 0; }
+.hero-scroll-invite.show {
+  opacity: 1;
 }
 
+.scroll-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  opacity: 0.6;
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin: 15px auto 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-arrow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  animation: scrollLine 2s infinite;
+}
+
+@keyframes scrollLine {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
-  .hero-footer-modern {
-    flex-direction: column;
-    align-items: center;
-    bottom: 30px; /* Reduced from 40px */
-    gap: 30px; /* Reduced from 40px */
-    padding: 0 20px;
+  .hero-content {
+    padding: 20px;
   }
-  .hero-loc-date-wrap {
-    flex-direction: row;
-    justify-content: center;
+  .hero-top-meta {
+    margin-bottom: 40px;
+    gap: 10px;
+  }
+  .save-the-date, .wedding-date {
+    font-size: 9px;
+  }
+  .decorative-line {
+    width: 25px;
+  }
+  .hero-countdown-minimal {
     gap: 20px;
+    margin-bottom: 60px;
   }
-  .footer-separator {
-    height: 20px;
+  .minimal-cd-val {
+    font-size: 28px;
   }
-  .marquee-line {
-    font-size: 15vw;
+  .hero-name {
+    font-size: clamp(50px, 14vw, 100px);
+    white-space: nowrap;
   }
-  .hero-name { font-size: clamp(40px, 12vw, 90px); line-height: 0.9; }
-  .hero-ampersand-modern { font-size: clamp(32px, 10vw, 65px); margin: -0.1em 0; }
-  .hero-countdown-modern { gap: 15px; }
-  .cd-m-num { font-size: 28px; }
 }
 </style>
