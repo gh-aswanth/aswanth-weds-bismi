@@ -71,11 +71,6 @@ onUnmounted(() => {
     <div class="eng-footer-modern">
       <div class="eng-loc-date-wrap">
         <div class="footer-info-group">
-          <p class="e-label">Location</p>
-          <p class="e-value">Rose Garden Estate</p>
-        </div>
-        <div class="footer-separator"></div>
-        <div class="footer-info-group">
           <p class="e-label">Date</p>
           <p class="e-value">March 15, 2026</p>
         </div>
