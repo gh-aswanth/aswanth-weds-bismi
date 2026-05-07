@@ -9,7 +9,6 @@
       <ChatSection />
       <DatingSection />
       <EngagementSection />
-      <JourneySection />
       <FinaleSection />
     </main>
   </div>
@@ -24,7 +23,6 @@ import MatchSection from './components/MatchSection.vue';
 import ChatSection from './components/ChatSection.vue';
 import DatingSection from './components/DatingSection.vue';
 import EngagementSection from './components/EngagementSection.vue';
-import JourneySection from './components/JourneySection.vue';
 import FinaleSection from './components/FinaleSection.vue';
 
 onMounted(() => {

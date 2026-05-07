@@ -19,7 +19,6 @@ const links = [
   { href: '#chat' },
   { href: '#dating' },
   { href: '#chapter4' },
-  { href: '#journey' },
   { href: '#finale' }
 ];
 
