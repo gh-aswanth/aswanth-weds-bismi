@@ -1,9 +1,9 @@
 <template>
   <section id="hero">
     <div class="hero-marquee-container">
-      <div class="marquee-line">THE WEDDING OF ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 ·</div>
-      <div class="marquee-line rev">SAVE THE DATE · JUNE 14, 2026 · THE WEDDING OF ASWANTH &amp; DR. BISMI K ·</div>
-      <div class="marquee-line">ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 · THE WEDDING OF ASWANTH &amp; DR. BISMI K ·</div>
+      <div class="marquee-line">THE WEDDING OF ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 · THE WEDDING OF ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 ·</div>
+      <div class="marquee-line rev">SAVE THE DATE · JUNE 14, 2026 · THE WEDDING OF ASWANTH &amp; DR. BISMI K · SAVE THE DATE · JUNE 14, 2026 ·</div>
+      <div class="marquee-line">ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 · THE WEDDING OF ASWANTH &amp; DR. BISMI K · ASWANTH &amp; DR. BISMI K · JUNE 14, 2026 ·</div>
     </div>
 
     <div class="hero-content">
@@ -124,20 +124,21 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  opacity: 0.08;
+  opacity: 0.15;
   pointer-events: none;
 }
 
 .marquee-line {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 800;
-  font-size: 12vw;
+  font-size: 15vw;
   white-space: nowrap;
   color: transparent;
-  -webkit-text-stroke: 1px var(--gold);
-  line-height: 1;
+  -webkit-text-stroke: 1.5px var(--gold);
+  line-height: 0.9;
   display: flex;
-  animation: marquee-scroll 40s linear infinite;
+  animation: marquee-scroll 30s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(197, 163, 88, 0.2));
 }
 
 .marquee-line.rev {
