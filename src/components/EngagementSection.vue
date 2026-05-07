@@ -162,15 +162,15 @@ onUnmounted(() => {
 
 .eng-name {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(60px, 12vw, 150px); /* Reduced from clamp(80px, 15vw, 180px) */
-  color: var(--rose);
+  font-size: clamp(50px, 15vw, 120px);
+  color: var(--gold-light);
   line-height: 0.8;
   letter-spacing: normal;
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 2s cubic-bezier(0.19, 1, 0.22, 1), 
               transform 2s cubic-bezier(0.19, 1, 0.22, 1);
-  background: linear-gradient(to right, var(--gold), var(--rose-light), var(--gold));
+  background: linear-gradient(to right, var(--gold-light), #fff, var(--gold-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -188,13 +188,13 @@ onUnmounted(() => {
 
 .eng-ampersand-modern {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(50px, 10vw, 120px); /* Reduced from 150px */
+  font-size: clamp(40px, 10vw, 80px);
   color: var(--gold);
   z-index: 15;
   opacity: 0;
   transform: scale(0);
   transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  margin: -0.3em 0; /* Tightened from -0.2em */
+  margin: -0.3em 0;
 }
 
 .eng-ampersand-modern.show {
@@ -320,7 +320,7 @@ onUnmounted(() => {
   .marquee-line {
     font-size: 15vw;
   }
-  .eng-name { font-size: clamp(36px, 10vw, 70px); line-height: 0.9; }
-  .eng-ampersand-modern { font-size: clamp(28px, 8vw, 50px); margin: -0.1em 0; }
+  .eng-name { font-size: clamp(40px, 12vw, 90px); line-height: 0.9; }
+  .eng-ampersand-modern { font-size: clamp(32px, 10vw, 65px); margin: -0.1em 0; }
 }
 </style>
