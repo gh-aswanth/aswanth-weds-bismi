@@ -15,12 +15,16 @@
     </div>
 
     <div class="hero-footer-modern">
-      <div class="hero-loc-date">
-        <p class="h-label">Location</p>
-        <p class="h-value">SR Auditorium, Kollam</p>
-        <div style="height: 20px;"></div>
-        <p class="h-label">Date</p>
-        <p class="h-value">June 14, 2026</p>
+      <div class="hero-loc-date-wrap">
+        <div class="footer-info-group">
+          <p class="h-label">Location</p>
+          <p class="h-value">SR Auditorium, Kollam</p>
+        </div>
+        <div class="footer-separator"></div>
+        <div class="footer-info-group">
+          <p class="h-label">Date</p>
+          <p class="h-value">June 14, 2026</p>
+        </div>
       </div>
 
       <div class="hero-countdown-modern">
@@ -162,14 +166,15 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 60px; /* Reduced from 100px */
+  gap: 15px; /* Reduced from 20px */
 }
 
 .hero-name {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(80px, 18vw, 200px);
+  font-size: clamp(60px, 12vw, 150px); /* Reduced from clamp(80px, 15vw, 180px) */
   color: var(--rose);
-  line-height: 1;
+  line-height: 0.8;
   letter-spacing: normal;
   opacity: 0;
   transform: scale(0.9);
@@ -193,37 +198,55 @@ onUnmounted(() => {
 
 .hero-ampersand-modern {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(60px, 12vw, 150px);
+  font-size: clamp(50px, 10vw, 120px); /* Reduced from 150px */
   color: var(--gold);
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0);
   z-index: 15;
   opacity: 0;
+  transform: scale(0);
   transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin: -0.3em 0; /* Tightened from -0.2em */
 }
 
 .hero-ampersand-modern.show {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: scale(1);
 }
 
 .hero-footer-modern {
   position: absolute;
-  bottom: 60px;
+  bottom: 40px; /* Reduced from 60px */
   width: 100%;
   max-width: 1400px;
-  padding: 0 60px;
+  padding: 0 40px; /* Reduced from 60px */
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   z-index: 20;
 }
 
-.hero-loc-date {
+.hero-loc-date-wrap {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-info-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
+}
+
+.footer-separator {
+  width: 1px;
+  height: 30px;
+  background: var(--gold);
+  opacity: 0.3;
+  transform: scaleY(0);
+  animation: growY 1s forwards 2.6s;
+}
+
+@keyframes growY {
+  to { transform: scaleY(1); }
 }
 
 .h-label {
@@ -255,7 +278,7 @@ onUnmounted(() => {
 
 .hero-countdown-modern {
   display: flex;
-  gap: 40px;
+  gap: 30px; /* Reduced from 40px */
   opacity: 0;
   animation: fadeIn 2s forwards 3s;
 }
@@ -273,7 +296,7 @@ onUnmounted(() => {
 .cd-m-num {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 200;
-  font-size: 40px;
+  font-size: 32px; /* Reduced from 40px */
   color: #fff;
   line-height: 1;
 }
@@ -314,12 +337,24 @@ onUnmounted(() => {
   .hero-footer-modern {
     flex-direction: column;
     align-items: center;
-    bottom: 40px;
-    gap: 40px;
+    bottom: 30px; /* Reduced from 40px */
+    gap: 30px; /* Reduced from 40px */
     padding: 0 20px;
   }
-  .hero-loc-date { text-align: center; }
-  .hero-name { font-size: 70px; }
-  .hero-countdown-modern { gap: 20px; }
+  .hero-loc-date-wrap {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+  .footer-separator {
+    height: 20px;
+  }
+  .marquee-line {
+    font-size: 15vw;
+  }
+  .hero-name { font-size: clamp(36px, 10vw, 70px); line-height: 0.9; }
+  .hero-ampersand-modern { font-size: clamp(28px, 8vw, 50px); margin: -0.1em 0; }
+  .hero-countdown-modern { gap: 15px; }
+  .cd-m-num { font-size: 28px; }
 }
 </style>

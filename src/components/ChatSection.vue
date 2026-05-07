@@ -10,7 +10,7 @@
             <div class="user-info">
               <div class="avatar">A&B</div>
               <div class="details">
-                <span class="name">Aswanth & Bismi</span>
+                <span class="name">Aswanth & Dr. Bismi K</span>
                 <span class="status">Online · Matrimony Chat</span>
               </div>
             </div>

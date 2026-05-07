@@ -81,17 +81,17 @@ onMounted(() => {
 <style scoped>
 #journey {
   background: #060608;
-  padding: 150px 0;
+  padding: 80px 0; /* Reduced from 150px */
   position: relative;
 }
 
 .architectural-timeline {
-  max-width: 1000px;
-  margin: 100px auto 0;
+  max-width: 900px; /* Reduced from 1000px */
+  margin: 60px auto 0; /* Reduced from 100px */
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 40px; /* Reduced from 80px */
 }
 
 .timeline-track {
@@ -112,7 +112,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 120px;
+  gap: 80px; /* Reduced from 120px */
   position: relative;
   z-index: 2;
 }
@@ -178,7 +178,7 @@ onMounted(() => {
 
 .card-inner {
   background: rgba(255, 255, 255, 0.02);
-  padding: 40px;
+  padding: 25px; /* Reduced from 40px */
   border: 1px solid rgba(212, 180, 131, 0.05);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
@@ -208,16 +208,16 @@ onMounted(() => {
 
 .card-header h4 {
   font-family: 'Cormorant Display', serif;
-  font-size: 28px;
+  font-size: 22px; /* Reduced from 28px */
   color: var(--gold-light);
 }
 
 .card-inner p {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
+  font-size: 16px; /* Reduced from 18px */
   color: var(--pearl);
   opacity: 0.8;
-  line-height: 1.6;
+  line-height: 1.5; /* Reduced from 1.6 */
 }
 
 .wedding-details-expand {

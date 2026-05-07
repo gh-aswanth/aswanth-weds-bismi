@@ -69,12 +69,16 @@ onUnmounted(() => {
     </div>
 
     <div class="eng-footer-modern">
-      <div class="eng-loc-date">
-        <p class="e-label">Event</p>
-        <p class="e-value">The Promise</p>
-        <div style="height: 20px;"></div>
-        <p class="e-label">Date</p>
-        <p class="e-value">March 15, 2026</p>
+      <div class="eng-loc-date-wrap">
+        <div class="footer-info-group">
+          <p class="e-label">Location</p>
+          <p class="e-value">Rose Garden Estate</p>
+        </div>
+        <div class="footer-separator"></div>
+        <div class="footer-info-group">
+          <p class="e-label">Date</p>
+          <p class="e-value">March 15, 2026</p>
+        </div>
       </div>
 
       <div class="eng-status-reveal">
@@ -143,11 +147,11 @@ onUnmounted(() => {
 
 .section-tag {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.5em;
+  font-size: 11px; /* Reduced from 12px */
+  letter-spacing: 0.4em; /* Reduced from 0.5em */
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 40px;
+  margin-bottom: 25px; /* Reduced from 40px */
   opacity: 0.6;
 }
 
@@ -157,14 +161,15 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 60px; /* Reduced from 100px */
+  gap: 15px; /* Reduced from 20px */
 }
 
 .eng-name {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(80px, 18vw, 200px);
+  font-size: clamp(60px, 12vw, 150px); /* Reduced from clamp(80px, 15vw, 180px) */
   color: var(--rose);
-  line-height: 1;
+  line-height: 0.8;
   letter-spacing: normal;
   opacity: 0;
   transform: scale(0.9);
@@ -188,37 +193,55 @@ onUnmounted(() => {
 
 .eng-ampersand-modern {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(60px, 12vw, 150px);
+  font-size: clamp(50px, 10vw, 120px); /* Reduced from 150px */
   color: var(--gold);
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0);
   z-index: 15;
   opacity: 0;
+  transform: scale(0);
   transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin: -0.3em 0; /* Tightened from -0.2em */
 }
 
 .eng-ampersand-modern.show {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: scale(1);
 }
 
 .eng-footer-modern {
   position: absolute;
-  bottom: 60px;
+  bottom: 40px; /* Reduced from 60px */
   width: 100%;
   max-width: 1400px;
-  padding: 0 60px;
+  padding: 0 40px; /* Reduced from 60px */
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   z-index: 20;
 }
 
-.eng-loc-date {
+.eng-loc-date-wrap {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-info-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
+}
+
+.footer-separator {
+  width: 1px;
+  height: 30px;
+  background: var(--gold);
+  opacity: 0.3;
+  transform: scaleY(0);
+  animation: growY 1s forwards 2.6s;
+}
+
+@keyframes growY {
+  to { transform: scaleY(1); }
 }
 
 .e-label {
@@ -287,11 +310,22 @@ onUnmounted(() => {
   .eng-footer-modern {
     flex-direction: column;
     align-items: center;
-    bottom: 40px;
-    gap: 40px;
+    bottom: 30px; /* Reduced from 40px */
+    gap: 30px; /* Reduced from 40px */
     padding: 0 20px;
   }
-  .eng-loc-date { text-align: center; }
-  .eng-name { font-size: 70px; }
+  .eng-loc-date-wrap {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+  .footer-separator {
+    height: 20px;
+  }
+  .marquee-line {
+    font-size: 15vw;
+  }
+  .eng-name { font-size: clamp(36px, 10vw, 70px); line-height: 0.9; }
+  .eng-ampersand-modern { font-size: clamp(28px, 8vw, 50px); margin: -0.1em 0; }
 }
 </style>

@@ -265,7 +265,9 @@ onMounted(() => {
 .sig-names {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 25px;
+  flex-wrap: nowrap;
 }
 
 .name-main {
@@ -275,6 +277,7 @@ onMounted(() => {
   background: linear-gradient(to right, var(--gold-light), #fff, var(--gold-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
 .name-sep {
@@ -286,11 +289,33 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .qr-grid {
-    flex-direction: column;
-    gap: 40px;
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .qr-image-wrap {
+    width: 100px;
+    height: 100px;
+    padding: 8px;
+  }
+
+  .qr-type {
+    font-size: 14px;
+  }
+
+  .qr-action {
+    font-size: 8px;
+  }
+
+  .qr-label-wrap {
+    margin-bottom: 30px;
+  }
+
+  .qr-container {
+    margin-bottom: 100px;
   }
   
-  .name-main { font-size: 55px; }
+  .name-main { font-size: clamp(35px, 10vw, 55px); }
   .sig-names { gap: 15px; }
   .closing-statement { font-size: 18px; padding: 0 20px; }
 }
