@@ -175,7 +175,7 @@ onUnmounted(() => {
   font-size: clamp(60px, 15vw, 120px);
   color: var(--gold-light);
   line-height: 1.1;
-  padding: 0.1em 0;
+  padding: 0.1em 0.2em;
   letter-spacing: normal;
   opacity: 0;
   transform: translateY(30px);

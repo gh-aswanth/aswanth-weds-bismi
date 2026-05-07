@@ -226,6 +226,7 @@ const downloadPDF = () => {
   color: #1a1a1a;
   line-height: 1.1;
   white-space: nowrap;
+  padding: 0 10px;
 }
 
 .ampersand {

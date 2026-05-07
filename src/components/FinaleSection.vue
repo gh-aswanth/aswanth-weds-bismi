@@ -278,6 +278,7 @@ onMounted(() => {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
+  padding: 0 0.1em;
 }
 
 .name-sep {

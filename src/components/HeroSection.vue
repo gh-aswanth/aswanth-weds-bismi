@@ -208,7 +208,7 @@ onUnmounted(() => {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
-  padding: 0.1em 0;
+  padding: 0.1em 0.2em;
   opacity: 0;
   transform: translateY(50px);
   transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
@@ -366,6 +366,7 @@ onUnmounted(() => {
   .hero-name {
     font-size: clamp(50px, 14vw, 100px);
     white-space: nowrap;
+    padding: 0.1em 0.25em;
   }
 }
 </style>
